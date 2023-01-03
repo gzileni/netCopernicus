@@ -5,12 +5,12 @@ namespace Copernicus
 {
     public class Sentinel
     {
-        public List<string> datasets { get; private set; }
+        public Dataset Data = new ();
         public Product Pollution { get; private set; }
         public string ingestiondate = "ingestiondate:[NOW-3DAYS TO NOW]";
         public int row = 100;
         public int start = 0;
-
+        
         private string footprint { get; set; }
         private Dictionary<string, string> headers = new Dictionary<string, string>();
         private Dictionary<string, Product> products = new()
@@ -27,7 +27,7 @@ namespace Copernicus
         {
             this.Pollution = this.products[product];
             this.footprint = $"footprint:\"intersects({coordinates[0]}, {coordinates[1]})\"";
-            this.datasets = new();
+            this.Data.path = $"./{this.Pollution.key}";
         }
 
         public Sentinel(string product, List<float> coordinates, int days) : this(product, coordinates)
