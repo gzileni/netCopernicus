@@ -1,30 +1,44 @@
 ﻿using System;
+using Copernicus;
+
 namespace Copernicus
 {
-	public class Sentinel
-	{
-        readonly Dictionary<string, string> headers = new() { { "Authorization", "Basic czVwZ3Vlc3Q6czVwZ3Vlc3Q=`" } };
+    public class Sentinel
+    {
+        public List<string> datasets { get; private set; }
+        public Product Pollution { get; private set; }
+        public string ingestiondate = "ingestiondate:[NOW-3DAYS TO NOW]";
+        public int row = 100;
+        public int start = 0;
 
-        public Sentinel(string product, List<float> coordinates, Nullable<int> days)
+        private string footprint { get; set; }
+        private Dictionary<string, string> headers = new Dictionary<string, string>();
+        private Dictionary<string, Product> products = new()
         {
-            this.product = $"producttype:{product}";
+            { "SO2", new Product { name="L2__SO2___", key="sulfurdioxide", description="Sulfur Dioxide (SO2)" }},
+            { "NO2", new Product { name = "L2__NO2___", key = "nitrogendioxide", description = "Nitrogen Dioxide (NO2)" }},
+            { "HCHO", new Product { name = "L2__HCHO__", key = "formaldehyde", description = "Formaldehyde (HCHO)" }},
+            { "CO", new Product { name = "L2__CO____", key = "carbonmonoxide", description = "Carbon Monoxide (CO)" }},
+            { "AER_AI", new Product { name = "L2__AER_AI", key = "aerosolI", description = "UV Aerosol Index" }},
+            { "AER_LH", new Product { name = "L2__AER_LH", key = "aerosolH", description = "UV Aerosol Height" }}
+        };
+        
+        public Sentinel(string product, List<float> coordinates)
+        {
+            this.Pollution = this.products[product];
             this.footprint = $"footprint:\"intersects({coordinates[0]}, {coordinates[1]})\"";
-
-            if (days is null)
-            {
-                this.range = "ingestiondate:[NOW-3DAYS TO NOW]";
-            } else
-            {
-                this.range = $"ingestiondate:[NOW-{days}DAYS TO NOW]";
-            };
-
-            this.url = $"https://s5phub.copernicus.eu/dhus/search?q={this.footprint} AND {this.range} AND {this.product}&rows=100&start=0&format=json";
+            this.datasets = new();
         }
 
-        public string product { get; private set; }
-        public string footprint { get; private set; }
-        public string range { get; private set; }
-        public string url { get; private set; }
+        public Sentinel(string product, List<float> coordinates, int days) : this(product, coordinates)
+        {
+            this.ingestiondate = $"ingestiondate:[NOW-{days}DAYS TO NOW]";
+        }
+
+        public string urlDataset()
+        {
+            return $"https://s5phub.copernicus.eu/dhus/search?q={this.footprint} AND {this.ingestiondate} AND producttype:{this.Pollution.name}&rows={this.row}&start={this.start}&format=json";
+        }
 
         public void download()
         {
