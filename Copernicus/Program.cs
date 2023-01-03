@@ -12,10 +12,10 @@ FormalDehyde fo = new(coordinates);
 Nitrogendioxide ni = new(coordinates);
 Sulfurdioxide su = new(coordinates);
 
-Console.WriteLine($"\n{aH_1.Pollution.description}\n{aH_1.urlDataset()}");
-Console.WriteLine($"\n{aH_2.Pollution.description}\n{aH_2.urlDataset()}");
-Console.WriteLine($"\n{aI_1.Pollution.description}\n{aI_1.urlDataset()}");
-Console.WriteLine($"\n{co.Pollution.description}\n{co.urlDataset()}");
-Console.WriteLine($"\n{fo.Pollution.description}\n{fo.urlDataset()}");
-Console.WriteLine($"\n{ni.Pollution.description}\n{ni.urlDataset()}");
-Console.WriteLine($"\n{su.Pollution.description}\n{su.urlDataset()}");
+Console.WriteLine($"\n{aH_1.Pollution.description}\n{aH_1.urlDataset()}\n{aH_1.Data.path}");
+Console.WriteLine($"\n{aH_2.Pollution.description}\n{aH_2.urlDataset()}\n{aH_2.Data.path}");
+Console.WriteLine($"\n{aI_1.Pollution.description}\n{aI_1.urlDataset()}\n{aI_1.Data.path}");
+Console.WriteLine($"\n{co.Pollution.description}\n{co.urlDataset()}\n{co.Data.path}");
+Console.WriteLine($"\n{fo.Pollution.description}\n{fo.urlDataset()}\n{fo.Data.path}");
+Console.WriteLine($"\n{ni.Pollution.description}\n{ni.urlDataset()}\n{ni.Data.path}");
+Console.WriteLine($"\n{su.Pollution.description}\n{su.urlDataset()}\n{su.Data.path}");

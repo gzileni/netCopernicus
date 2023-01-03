@@ -12,7 +12,10 @@ namespace Copernicus
         public int start = 0;
         
         private string footprint { get; set; }
-        private Dictionary<string, string> headers = new Dictionary<string, string>();
+        private Dictionary<string, string> headers = new Dictionary<string, string>()
+        {
+            { "Authorization", "Basic czVwZ3Vlc3Q6czVwZ3Vlc3Q=" }
+        };
         private Dictionary<string, Product> products = new()
         {
             { "SO2", new Product { name="L2__SO2___", key="sulfurdioxide", description="Sulfur Dioxide (SO2)" }},
