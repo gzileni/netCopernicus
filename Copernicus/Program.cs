@@ -1,8 +1,13 @@
-﻿using Copernicus;
+﻿using System.Data.Common;
+using Copernicus;
 
 List<float> coordinates = new();
 coordinates.Add((float)45.6459);
 coordinates.Add((float)7.1634);
+
+CopernicusDB db = new();
+bool task = db.Connect();
+Console.WriteLine("Connected: " + task);
 
 AerosolHeight aH_1 = new(coordinates);
 AerosolHeight aH_2 = new(coordinates, 7);

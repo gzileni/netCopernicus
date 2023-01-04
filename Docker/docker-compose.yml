@@ -1,0 +1,53 @@
+version: '3.8'
+services:
+  db:
+    container_name: geo-db
+    image: postgis/postgis:14-3.2-alpine
+    restart: always
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DATABASE_NAME: ${POSTGRES_DATABASE_NAME}
+      PGPORT: ${PGPORT}
+    healthcheck:
+      test: [ 'CMD-SHELL', 'pg_isready -U ${POSTGRES_DATABASE_NAME}' ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    ports:
+      - ${PGPORT}:${PGPORT}
+    networks:
+      - geo-network
+    command: sh -c "/usr/local/bin/docker-entrypoint.sh postgres"
+    volumes:
+      - ./db:/var/lib/postgresql/data
+      - ./db-init-scripts:/docker-entrypoint-initdb.d
+
+  pgAdmin:
+    container_name: geo-pgadmin
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
+      PGPORT: ${PGPORT}
+    networks:
+      - geo-network
+    ports:
+      - '8083:80'
+    depends_on:
+      - db
+
+networks:
+   geo-network:
+      name: geo
+      driver: bridge
+      ipam:
+         driver: default
+         config:
+            - subnet: 192.168.199.0/24
+
+volumes:
+  db:
+    driver: local
+

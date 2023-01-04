@@ -1,0 +1,38 @@
+﻿[
+  {
+    "index": "SO2",
+    "name": "L2__SO2___",
+    "key": "sulfurdioxide",
+    "description": "Sulfur Dioxide (SO2)"
+  },
+  {
+    "index": "NO2", 
+    "name": "L2__NO2___",
+    "key": "nitrogendioxide",
+    "description": "Nitrogen Dioxide (NO2)"
+  },
+  {
+    "index": "HCHO",
+    "name": "L2__HCHO__",
+    "key": "formaldehyde",
+    "description": "Formaldehyde (HCHO)"
+  },
+  {
+    "index": "CO",
+    "name": "L2__CO____",
+    "key": "carbonmonoxide",
+    "description": "Carbon Monoxide (CO)"
+  },
+  {
+    "index": "AER_I",
+    "name": "L2__AER_AI",
+    "key": "aerosolI",
+    "description": "UV Aerosol Index"
+  },
+  {
+    "index": "AER_H",
+    "name": "L2__AER_LH",
+    "key": "aerosolH",
+    "description": "UV Aerosol Height"
+  }
+]
