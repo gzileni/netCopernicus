@@ -14,13 +14,17 @@
     <None Remove="Npgsql.EntityFrameworkCore.PostgreSQL.Design" />
     <None Remove="Npgsql.EntityFrameworkCore.PostgreSQL.NodaTime" />
     <None Remove="Npgsql.EntityFrameworkCore.PostgreSQL.NetTopologySuite" />
+    <None Remove="Microsoft.AspNetCore.Mvc.NewtonsoftJson" />
+    <None Remove="Program.Datasets" />
+    <None Remove="SDSCore" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="SDSLite" Version="2.0.3" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="7.0.1" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="7.0.0" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL.Design" Version="1.1.0" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL.NodaTime" Version="7.0.1" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL.NetTopologySuite" Version="7.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="7.0.1" />
+    <PackageReference Include="SDSLite" Version="2.0.3" />
   </ItemGroup>
 </Project>

@@ -1,10 +1,16 @@
 ﻿using System;
+
 namespace Copernicus
 {
-    public class Dataset
+    public class Dataset : HttpClient
     {
-        public string path = "";
-        public List<string> urls = new();
+        public Feed? feed { get; set; }
+
+        public Dataset()
+        {
+            
+        }
     }
 }
+
 
